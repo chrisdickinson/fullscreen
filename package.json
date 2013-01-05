@@ -1,0 +1,21 @@
+{
+  "name": "fullscreen",
+  "version": "0.0.1",
+  "description": "fullscreen polyfill api that presents an event emitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/fullscreen.git"
+  },
+  "keywords": [
+    "fullscreen",
+    "html5",
+    "canvas",
+    "browserify"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT"
+}
