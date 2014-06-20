@@ -48,6 +48,8 @@ function fullscreen(el) {
   }
 
   function release() {
+
+    var element_exit = 
     (el.exitFullscreen ||
     el.exitFullscreen ||
     el.webkitExitFullScreen ||
@@ -57,7 +59,28 @@ function fullscreen(el) {
     el.msExitFullScreen ||
     el.msExitFullscreen ||
     el.oExitFullScreen ||
-    el.oExitFullscreen).call(el)
+    el.oExitFullscreen);
+
+    if(element_exit) {
+      element_exit.call(el);
+      return;
+    }
+
+    var document_exit = 
+    (doc.exitFullscreen ||
+    doc.exitFullscreen ||
+    doc.webkitExitFullScreen ||
+    doc.webkitExitFullscreen ||
+    doc.mozExitFullScreen ||
+    doc.mozExitFullscreen ||
+    doc.msExitFullScreen ||
+    doc.msExitFullscreen ||
+    doc.oExitFullScreen ||
+    doc.oExitFullscreen);
+
+    document_exit.call(doc);
+
+
   } 
 
   function fullscreenelement() {
