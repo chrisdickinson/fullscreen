@@ -54,6 +54,8 @@ function fullscreen(el) {
     el.exitFullscreen ||
     el.webkitExitFullScreen ||
     el.webkitExitFullscreen ||
+    el.mozCancelFullScreen ||
+    el.mozCancelFullscreen ||
     el.mozExitFullScreen ||
     el.mozExitFullscreen ||
     el.msExitFullScreen ||
@@ -71,6 +73,8 @@ function fullscreen(el) {
     doc.exitFullscreen ||
     doc.webkitExitFullScreen ||
     doc.webkitExitFullscreen ||
+    doc.mozCancelFullScreen ||
+    doc.mozCancelFullscreen ||
     doc.mozExitFullScreen ||
     doc.mozExitFullscreen ||
     doc.msExitFullScreen ||
