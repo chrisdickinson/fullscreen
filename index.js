@@ -17,6 +17,15 @@ function fullscreen(el) {
   var vendors = ['', 'webkit', 'moz', 'ms', 'o']
 
   for(var i = 0, len = vendors.length; i < len; ++i) {
+    // if internet explorer
+    if (i === 3) {
+        changeEventName = 'MSFullscreenChange';
+        errorEventName = 'MSFullscreenError';
+    } else {
+        changeEventName = vendors[i] + 'fullscreenchange';
+        errorEventName = vendors[i] + 'fullscreenerror';
+    }
+
     ael.call(doc, vendors[i]+'fullscreenchange', onfullscreenchange)
     ael.call(doc, vendors[i]+'fullscreenerror', onfullscreenerror)
   }
