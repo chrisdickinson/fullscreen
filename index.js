@@ -14,12 +14,15 @@ function fullscreen(el) {
     , rfs = shim(el)
     , ee = new EE
 
-  var vendors = ['', 'webkit', 'moz', 'ms', 'o']
+  var vendors = ['', 'webkit', 'moz', 'o']
 
   for(var i = 0, len = vendors.length; i < len; ++i) {
-    ael.call(doc, vendors[i]+'fullscreenchange', onfullscreenchange)
-    ael.call(doc, vendors[i]+'fullscreenerror', onfullscreenerror)
+    ael.call(doc, vendors[i] + 'fullscreenchange', onfullscreenchange)
+    ael.call(doc, vendors[i] + 'fullscreenerror', onfullscreenerror)
   }
+  // MS uses different casing:
+  ael.call(doc, 'MSFullscreenChange', onfullscreenchange)
+  ael.call(doc, 'MSFullscreenError', onfullscreenerror)
 
   ee.release = release
   ee.request = request
