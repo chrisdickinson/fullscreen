@@ -14,7 +14,9 @@ function fullscreen(el) {
     , rfs = shim(el)
     , ee = new EE
 
-  var vendors = ['', 'webkit', 'moz', 'ms', 'o']
+    var vendors = ['', 'webkit', 'moz', 'ms', 'o'],
+        changeEventName,
+        errorEventName;
 
   for(var i = 0, len = vendors.length; i < len; ++i) {
     // if internet explorer
@@ -26,8 +28,8 @@ function fullscreen(el) {
         errorEventName = vendors[i] + 'fullscreenerror';
     }
 
-    ael.call(doc, vendors[i]+'fullscreenchange', onfullscreenchange)
-    ael.call(doc, vendors[i]+'fullscreenerror', onfullscreenerror)
+    ael.call(doc, changeEventName, onfullscreenchange)
+    ael.call(doc, errorEventName, onfullscreenerror)
   }
 
   ee.release = release
