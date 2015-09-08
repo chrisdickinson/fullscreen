@@ -14,7 +14,7 @@ function fullscreen(el) {
     , rfs = shim(el)
     , ee = new EE
 
-  var vendors = ['', 'webkit', 'moz', 'o']
+  var vendors = ['', 'webkit', 'moz']
 
   for(var i = 0, len = vendors.length; i < len; ++i) {
     ael.call(doc, vendors[i] + 'fullscreenchange', onfullscreenchange)
@@ -52,68 +52,39 @@ function fullscreen(el) {
 
   function release() {
 
-    var element_exit = 
-    (el.exitFullscreen ||
-    el.exitFullscreen ||
-    el.webkitExitFullScreen ||
-    el.webkitExitFullscreen ||
-    el.mozCancelFullScreen ||
-    el.mozCancelFullscreen ||
-    el.mozExitFullScreen ||
-    el.mozExitFullscreen ||
-    el.msExitFullScreen ||
-    el.msExitFullscreen ||
-    el.oExitFullScreen ||
-    el.oExitFullscreen);
+    var element_exit = (el.exitFullscreen ||
+      el.webkitExitFullscreen ||
+      el.mozCancelFullScreen ||
+      el.mozExitFullScreen ||
+      el.msExitFullscreen);
 
-    if(element_exit) {
+    if (element_exit) {
       element_exit.call(el);
       return;
     }
 
-    var document_exit = 
-    (doc.exitFullscreen ||
-    doc.exitFullscreen ||
-    doc.webkitExitFullScreen ||
-    doc.webkitExitFullscreen ||
-    doc.mozCancelFullScreen ||
-    doc.mozCancelFullscreen ||
-    doc.mozExitFullScreen ||
-    doc.mozExitFullscreen ||
-    doc.msExitFullScreen ||
-    doc.msExitFullscreen ||
-    doc.oExitFullScreen ||
-    doc.oExitFullscreen);
+    var document_exit = (doc.exitFullscreen ||
+      doc.webkitExitFullscreen ||
+      doc.mozCancelFullscreen ||
+      doc.mozExitFullScreen ||
+      doc.msExitFullscreen);
 
     document_exit.call(doc);
-
-
   } 
 
   function fullscreenelement() {
-    return 0 ||
-      doc.fullScreenElement ||
+    return (0 ||
       doc.fullscreenElement ||
-      doc.webkitFullScreenElement ||
       doc.webkitFullscreenElement ||
       doc.mozFullScreenElement ||
-      doc.mozFullscreenElement ||
-      doc.msFullScreenElement ||
       doc.msFullscreenElement ||
-      doc.oFullScreenElement ||
-      doc.oFullscreenElement ||
-      null
+      null);
   }
 }
 
 function shim(el) {
   return (el.requestFullscreen ||
     el.webkitRequestFullscreen ||
-    el.webkitRequestFullScreen ||
     el.mozRequestFullscreen ||
-    el.mozRequestFullScreen ||
-    el.msRequestFullscreen ||
-    el.msRequestFullScreen ||
-    el.oRequestFullscreen ||
-    el.oRequestFullScreen)
+    el.msRequestFullscreen);
 }
