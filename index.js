@@ -85,6 +85,6 @@ function fullscreen(el) {
 function shim(el) {
   return (el.requestFullscreen ||
     el.webkitRequestFullscreen ||
-    el.mozRequestFullscreen ||
+    el.mozRequestFullScreen ||
     el.msRequestFullscreen);
 }
