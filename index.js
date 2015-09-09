@@ -65,7 +65,7 @@ function fullscreen(el) {
 
     var document_exit = (doc.exitFullscreen ||
       doc.webkitExitFullscreen ||
-      doc.mozCancelFullscreen ||
+      doc.mozCancelFullScreen ||
       doc.mozExitFullScreen ||
       doc.msExitFullscreen);
 
