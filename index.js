@@ -47,7 +47,7 @@ function fullscreen(el) {
   }
 
   function request() {
-    return rfs.call(el)
+    return rfs.apply(el, arguments)
   }
 
   function release() {
@@ -67,7 +67,7 @@ function fullscreen(el) {
     el.oExitFullscreen);
 
     if(element_exit) {
-      element_exit.call(el);
+      element_exit.apply(el, arguments);
       return;
     }
 
@@ -85,7 +85,7 @@ function fullscreen(el) {
     doc.oExitFullScreen ||
     doc.oExitFullscreen);
 
-    document_exit.call(doc);
+    document_exit.apply(doc, arguments);
 
 
   } 
