@@ -2,14 +2,15 @@ module.exports = fullscreen
 fullscreen.available = available
 
 var EE = require('events').EventEmitter
+var ael = require('add-event-listener')
+var rel = ael.removeEventListener
 
 function available() {
   return !!shim(document.body)
 }
 
 function fullscreen(el) {
-  var ael = el.addEventListener || el.attachEvent
-    , doc = el.ownerDocument
+  var doc = el.ownerDocument
     , body = doc.body
     , rfs = shim(el)
     , ee = new EE
@@ -17,15 +18,16 @@ function fullscreen(el) {
   var vendors = ['', 'webkit', 'moz']
 
   for(var i = 0, len = vendors.length; i < len; ++i) {
-    ael.call(doc, vendors[i] + 'fullscreenchange', onfullscreenchange)
-    ael.call(doc, vendors[i] + 'fullscreenerror', onfullscreenerror)
+    ael(doc, vendors[i] + 'fullscreenchange', onfullscreenchange)
+    ael(doc, vendors[i] + 'fullscreenerror', onfullscreenerror)
   }
   // MS uses different casing:
-  ael.call(doc, 'MSFullscreenChange', onfullscreenchange)
-  ael.call(doc, 'MSFullscreenError', onfullscreenerror)
+  ael(doc, 'MSFullscreenChange', onfullscreenchange)
+  ael(doc, 'MSFullscreenError', onfullscreenerror)
 
   ee.release = release
   ee.request = request
+  ee.dispose = dispose
   ee.target = fullscreenelement
 
   if(!shim) {
@@ -79,6 +81,16 @@ function fullscreen(el) {
       doc.mozFullScreenElement ||
       doc.msFullscreenElement ||
       null);
+  }
+
+  function dispose() {
+    for(var i = 0, len = vendors.length; i < len; ++i) {
+      rel(doc, vendors[i] + 'fullscreenchange', onfullscreenchange)
+      rel(doc, vendors[i] + 'fullscreenerror', onfullscreenerror)
+    }
+    // MS uses different casing:
+    rel(doc, 'MSFullscreenChange', onfullscreenchange)
+    rel(doc, 'MSFullscreenError', onfullscreenerror)
   }
 }
 
