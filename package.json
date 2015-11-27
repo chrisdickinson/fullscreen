@@ -17,5 +17,8 @@
     "browserify"
   ],
   "author": "Chris Dickinson <chris@neversaw.us>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "add-event-listener": "0.0.1"
+  }
 }

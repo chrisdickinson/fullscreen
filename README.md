@@ -52,6 +52,10 @@ issue a request for fullscreen. if it's accepted, it emits `'attain'`, otherwise
 
 release the current fullscreen element. if the fullscreen is released, it emits `'release'`.
 
+## fs.dispose() -> undefined
+
+removes any event listeners created by the `fs` instance once you're done with it.
+
 ## fs.target() -> HTMLElement?
 
 returns the current fullscreen target, if any.
