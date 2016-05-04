@@ -1,5 +1,6 @@
 module.exports = fullscreen
 fullscreen.available = available
+fullscreen.enabled = enabled
 
 var EE = require('events').EventEmitter
 var ael = require('add-event-listener')
@@ -7,6 +8,13 @@ var rel = ael.removeEventListener
 
 function available() {
   return !!shim(document.body)
+}
+
+function enabled() {
+  return !!(document.fullscreenEnabled ||
+    document.webkitFullscreenEnabled ||
+    document.mozFullscreenEnabled ||
+    document.msFullscreenEnabled);
 }
 
 function fullscreen(el) {
