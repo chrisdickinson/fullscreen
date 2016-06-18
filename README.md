@@ -39,6 +39,10 @@ fs.on('error', function() {
 
 return a boolean yes/no for whether fullscreen api is supported.
 
+## require('fullscreen').enabled() -> bool
+
+return a boolean yes/no for whether fullscreen is enabled for the document.
+
 ## fullscreen(element) -> fs event emitter
 
 return a fullscreen event emitter object. if fullscreen is not
