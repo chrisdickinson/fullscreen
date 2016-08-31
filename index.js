@@ -23,15 +23,13 @@ function fullscreen(el) {
     , rfs = shim(el)
     , ee = new EE
 
-  var vendors = ['', 'webkit', 'moz']
+  var changeEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange']
+  var errorEvents = ['fullscreenerror', 'webkitfullscreenerror', 'mozfullscreenerror', 'MSFullscreenError']
 
-  for(var i = 0, len = vendors.length; i < len; ++i) {
-    ael(doc, vendors[i] + 'fullscreenchange', onfullscreenchange)
-    ael(doc, vendors[i] + 'fullscreenerror', onfullscreenerror)
+  for(var i = 0, len = changeEvents.length; i < len; ++i) {
+    ael(doc, changeEvents[i], onfullscreenchange)
+    ael(doc, errorEvents[i], onfullscreenerror)
   }
-  // MS uses different casing:
-  ael(doc, 'MSFullscreenChange', onfullscreenchange)
-  ael(doc, 'MSFullscreenError', onfullscreenerror)
 
   ee.release = release
   ee.request = request
@@ -92,13 +90,10 @@ function fullscreen(el) {
   }
 
   function dispose() {
-    for(var i = 0, len = vendors.length; i < len; ++i) {
-      rel(doc, vendors[i] + 'fullscreenchange', onfullscreenchange)
-      rel(doc, vendors[i] + 'fullscreenerror', onfullscreenerror)
+    for(var i = 0, len = changeEvents.length; i < len; ++i) {
+      rel(doc, changeEvents[i], onfullscreenchange)
+      rel(doc, errorEvents[i], onfullscreenerror)
     }
-    // MS uses different casing:
-    rel(doc, 'MSFullscreenChange', onfullscreenchange)
-    rel(doc, 'MSFullscreenError', onfullscreenerror)
   }
 }
 
