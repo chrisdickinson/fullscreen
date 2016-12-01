@@ -13,7 +13,7 @@ function available() {
 function enabled() {
   return !!(document.fullscreenEnabled ||
     document.webkitFullscreenEnabled ||
-    document.mozFullscreenEnabled ||
+    document.mozFullScreenEnabled ||
     document.msFullscreenEnabled);
 }
 
