@@ -80,7 +80,7 @@ function fullscreen(el) {
       doc.msExitFullscreen);
 
     document_exit.apply(doc, arguments);
-  } 
+  }
 
   function fullscreenelement() {
     return (0 ||
