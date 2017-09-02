@@ -38,10 +38,9 @@ function fullscreen(el) {
   ee.dispose = dispose
   ee.target = fullscreenelement
 
-  if(!shim) {
-    setTimeout(function() {
-      ee.emit('error', new Error('fullscreen is not supported'))
-    }, 0)
+  if(!rfs) {
+    // Ensures that the event emitter is returned before emitting error
+    setTimeout(emitError, 0);
   }
   return ee
 
@@ -53,10 +52,15 @@ function fullscreen(el) {
   }
 
   function onfullscreenerror() {
-    ee.emit('error')
+    emitError();
   }
 
   function request() {
+    if (!rfs) {
+      return emitError('fullscreen request failed because no ' +
+        'requestFullscreen methods were found on target element');
+    }
+
     return rfs.apply(el, arguments)
   }
 
@@ -80,7 +84,7 @@ function fullscreen(el) {
       doc.msExitFullscreen);
 
     document_exit.apply(doc, arguments);
-  } 
+  }
 
   function fullscreenelement() {
     return (0 ||
@@ -99,6 +103,11 @@ function fullscreen(el) {
     // MS uses different casing:
     rel(doc, 'MSFullscreenChange', onfullscreenchange)
     rel(doc, 'MSFullscreenError', onfullscreenerror)
+  }
+
+  function emitError(_msg) {
+    var msg = _msg || 'fullscreen is not supported';
+    return ee.emit('error', new Error(msg));
   }
 }
 
