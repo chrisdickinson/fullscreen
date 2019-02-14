@@ -11,10 +11,10 @@ function available() {
 }
 
 function enabled() {
-  return !!(document.fullscreenEnabled ||
-    document.webkitFullscreenEnabled ||
-    document.mozFullScreenEnabled ||
-    document.msFullscreenEnabled);
+  return !!(document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.mozFullScreenElement ||
+    document.msFullscreenElement);
 }
 
 function fullscreen(el) {
