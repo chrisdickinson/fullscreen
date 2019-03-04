@@ -79,7 +79,9 @@ function fullscreen(el) {
       doc.mozExitFullScreen ||
       doc.msExitFullscreen);
 
-    document_exit.apply(doc, arguments);
+    if (enabled()) {
+      document_exit.apply(doc, arguments);
+    }
   } 
 
   function fullscreenelement() {
